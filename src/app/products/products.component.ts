@@ -32,18 +32,6 @@ export class ProductsComponent implements OnInit {
       name: 'Item 3',
       description: 'Item 3',
       price: 8
-  },
-  {
-      id: 'item_4',
-      name: 'Item 4',
-      description: 'Item 4',
-      price: 276
-  },
-  {
-      id: 'item_5',
-      name: 'Item 5',
-      description: 'Item 5',
-      price: 89
   }];
 
   addToCart = (id) => {
