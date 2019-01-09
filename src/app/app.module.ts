@@ -3,28 +3,21 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { RouterModule, Routes, Router } from '@angular/router';
-// import { MatTableModule } from '@angular/material/table';
-
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { SimpleReducer } from './simple.reducer';
+import { PostReducer } from './post.reducer';
+import { CartReducer } from './reducers/cart.reducer';
 
 
 const appRoutes: Routes = [
   { path: '',           component: ProductsComponent },
   { path: 'checkout',   component: CheckoutComponent },
-  {
-    path: 'checkout',
-    component: CheckoutComponent,
-    data: { title: 'Heroes List' }
-  },
-  // { path: '',
-  //   redirectTo: '/heroes',
-  //   pathMatch: 'full'
-  // },
   { path: '**', component: ProductsComponent }
 ];
 
@@ -49,7 +42,12 @@ const appRoutes: Routes = [
             useHash: true
         } // <-- debugging purposes only
     ),
-    // MatTableModule
+    StoreModule.forRoot({
+        post: PostReducer,
+        message: SimpleReducer,
+        cart: CartReducer
+        // stock: StockReducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
