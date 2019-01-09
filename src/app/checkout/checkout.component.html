@@ -11,7 +11,7 @@
             <span>Total Cost: €{{getTotalCost()}}</span><br>
             <span>Total Items in Cart: {{getTotalItemCount()}}</span><br>
 
-            <table width="100%" style="margin-top: 50px;">
+            <table width="100%" style="margin-top: 50px;" *ngIf="cart$ | async as items">
                 <thead>
                     <tr>
                         <td width="30%"><strong>Name</strong></td>
@@ -22,10 +22,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of cart">
+                    <tr *ngFor="let item of items">
                         <td width="30%">{{item.name}}</td>
                         <td width="10%">€{{item.price}}</td>
-                        <td width="10%">{{item.quantity}}</td>
+                        <td width="10%">{{item.inCart}}</td>
                         <td width="10%"><button mat-button color="primary" (click)="removeOne(item.id)" >Remove One</button></td>
                         <td width="10%"><button mat-button color="accent" (click)="removeAll(item.id)" >Remove All</button></td>
                     </tr>

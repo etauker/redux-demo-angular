@@ -1,6 +1,6 @@
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    Welcome to the Redux Store!
   </h1>
 </div>
 
@@ -8,38 +8,21 @@
     <div id="summary" style="margin-bottom: 30px;">
         <mat-card width="320px">
             <h3>Cart Summary</h3>
-            <span>Total Cost: {{getTotalCost()}}</span><br>
+            <span>Total Cost: €{{getTotalCost()}}</span><br>
             <span>Total Items in Cart: {{getTotalItemCount()}}</span><br>
             <div style="margin-top: 10px">
-                <button mat-raised-button color="primary" (click)="spanish()">{{message$ | async}}</button>
-                <button mat-raised-button color="primary" (click)="spanish()">{{message$ | async}}</button>
-                <button mat-raised-button color="primary" (click)="spanish()">{{message$ | async}}</button>
-                <!-- <button mat-raised-button color="primary" (click)="goToCheckout()">Go To Checkout</button> -->
+                <button mat-raised-button color="primary" (click)="goToCheckout()">Go To Checkout</button>
             </div>
         </mat-card>
     </div>
-    <!-- <div id="items" style="display: inline-block">
-        <mat-card *ngFor="let item of stock" width="80px" style="display: inline-block">
-            <div>
-                <h3>{{item.name}}</h3>
-                <span>Price: {{item.price}}</span><br>
-                <span>Description: {{item.description}}</span><br>
-                <span>Currently In Cart: {{getCurrentlyInCart(item.id)}}</span><br>
-            </div>
-            <div style="margin-top: 10px">
-                <button mat-raised-button color="primary" (click)="addToCart(item.id)">Add to cart</button>
-                <button mat-raised-button color="accent" (click)="removeFromCart(item.id)">Remove from cart</button>
-            </div>
-        </mat-card>
-    </div> -->
 
-    <div id="items" style="display: inline-block">
-        <mat-card *ngFor="let item of stock" width="80px" style="display: inline-block">
+    <div id="items" style="display: inline-block"  *ngIf="cart$ | async as items">
+        <mat-card *ngFor="let item of items" width="80px" style="display: inline-block">
             <div>
                 <h3>{{item.namme}}</h3>
-                <span>Price: {{item.price}}</span><br>
+                <span>Price: €{{item.price}}</span><br>
                 <span>Description: {{item.description}}</span><br>
-                <!-- <span>Currently In Cart: {{getCurrentlyInCart(item.id)}}</span><br> -->
+                <span>Currently In Cart: {{getCurrentlyInCart(item.id)}}</span><br>
             </div>
             <div style="margin-top: 10px">
                 <button mat-raised-button color="primary" (click)="addToCart(item.id)">Add to cart</button>

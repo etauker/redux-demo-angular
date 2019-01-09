@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+
+import { AppState, Product } from '../redux/models/shop.model';
+import * as CartActions from '../redux/actions/cart.actions';
+
+
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -7,57 +15,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor() { }
+  cart$: Observable<Product[]>;
+  currentlyInCart: any = [];
+  totalCost: number = 0;
+  totalItemCount: number = 0;
 
-  ngOnInit() {
+  constructor(
+    private store: Store<AppState>
+  ) {
+    this.cart$ = this.store.select('cart');
+    this.cart$.subscribe((array) => {
+
+      this.currentlyInCart = [];
+      this.totalCost = 0;
+      this.totalItemCount = 0;
+
+      array.forEach((item) => {
+        this.currentlyInCart[item.id] = item.inCart;
+        this.totalCost += (item.inCart * item.price);
+        this.totalItemCount += item.inCart;
+      })
+    );
   }
 
-  cart = [{
-      id: 'item_1',
-      name: 'Item',
-      description: '',
-      price: 4,
-      quantity: 7
-  },
-  {
-      id: 'item_2',
-      name: 'Another Item',
-      description: '',
-      price: 3,
-      quantity: 12
-  }];
+  // Redux functions
+  removeOne = (productId) => {
+    this.store.dispatch(new CartActions.Remove(productId));
+  }
+  removeAll = (productId) => {
+      this.store.dispatch(new CartActions.RemoveAll(productId));
+  }
 
-  removeOne = (id) => {
-     if (this.cart.some(item => item.id === id)) {
-         this.cart = this.cart.map(item => {
-            if (item.id === id) {
-                item.quantity--;
-            }
-            if (item.quantity > 0) {
-                return item;
-            }
-         })
-         .filter(item => item && item.quantity > 0);
-     }
-  }
-  removeAll = (id) => {
-     if (this.cart.some(item => item.id === id)) {
-         this.cart = this.cart.map(item => {
-            if (item.id !== id) {
-                return item;
-            }
-         })
-         .filter(item => item);
-     }
-  }
+  // Getters
   getTotalCost = () => {
-      return this.cart.reduce((total, item) => {
-          return total + (item.price * item.quantity);
-      }, 0);
+      return this.totalCost;
   }
   getTotalItemCount = () => {
-      return this.cart.reduce((count, item) => {
-          return count + item.quantity;
-      }, 0);
+      return this.totalItemCount;
   }
 }
