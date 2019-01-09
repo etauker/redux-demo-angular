@@ -48,4 +48,5 @@ Patterns
     - Tools
     - Observables
     - Effects
-    -
+
+https://toddmotto.com/ngrx-store-understanding-state-selectors

@@ -8,12 +8,15 @@ import { ProductsComponent } from './products/products.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
 // UI Component Imports
+import { MatToolbarModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 
 // Redux Imports
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { UserReducer } from './redux/reducers/user.reducer';
 import { CartReducer } from './redux/reducers/cart.reducer';
 
 
@@ -33,13 +36,16 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
+    MatMenuModule,
     MatButtonModule,
     MatCardModule,
     RouterModule.forRoot(
         appRoutes, { useHash: true }
     ),
     StoreModule.forRoot({
-        cart: CartReducer
+      user: UserReducer,
+      cart: CartReducer
     }),
     StoreDevtoolsModule.instrument({
         maxAge: 10

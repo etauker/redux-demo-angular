@@ -2,5 +2,12 @@
 /* @import '~https://fonts.googleapis.com/icon?family=Material+Icons'; */
 /* @import '~../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css'; */
 
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
 /* @import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css'; */
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

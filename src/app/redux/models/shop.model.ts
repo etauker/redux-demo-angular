@@ -1,7 +1,7 @@
 export interface UserSettings {
     id: string;
     name: string;
-    [key: string]: string | number | boolean;
+    language: string;
 }
 
 export interface Product {
