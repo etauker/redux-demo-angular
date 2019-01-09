@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { UserSettings } from '../models/shop.model';
 
 export const CHANGE = '[USER] Change'
 export const RESET = '[USER] Reset User Settings'
@@ -12,4 +13,4 @@ export class ResetUserSettings implements Action {
     readonly type = RESET;
 }
 
-export type All = UpdateLanguage | ResetUserSettings;
+export type All = ChangeActiveUser | ResetUserSettings;

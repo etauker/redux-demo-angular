@@ -13,7 +13,7 @@ import * as CartActions from '../redux/actions/cart.actions';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent {
 
   cart$: Observable<Product[]>;
   currentlyInCart: any = [];
@@ -35,7 +35,7 @@ export class CheckoutComponent implements OnInit {
         this.totalCost += (item.inCart * item.price);
         this.totalItemCount += item.inCart;
       })
-    );
+    });
   }
 
   // Redux functions
