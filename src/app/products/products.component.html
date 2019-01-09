@@ -27,7 +27,7 @@
     <div id="items" style="display: inline-block"  *ngIf="cart$ | async as items">
         <mat-card *ngFor="let item of items" width="80px" style="display: inline-block">
             <div>
-                <h3>{{item.namme}}</h3>
+                <h3>{{item.name}}</h3>
                 <span>Price: €{{item.price}}</span><br>
                 <span>Description: {{item.description}}</span><br>
                 <span>Currently In Cart: {{getCurrentlyInCart(item.id)}}</span><br>

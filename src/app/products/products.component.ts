@@ -71,10 +71,10 @@ export class ProductsComponent {
   }
   changeUser = () => {
 
-    if (this.activeUser.id === 'default_user') {
+    if (this.activeUser.id === 'ben') {
       const newUser = {
-        id: 'tom_james',
-        name: 'Tom James',
+        id: 'jerry',
+        name: 'Jerry',
         language: 'de'
       };
       this.store.dispatch(new UserActions.ChangeActiveUser(newUser));

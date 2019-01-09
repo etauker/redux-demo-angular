@@ -2,8 +2,8 @@ import * as UserActions from '../actions/user.actions';
 import { AppState, UserSettings } from '../models/shop.model';
 
 const defaultState: UserSettings = {
-  id: 'default_user',
-  name: '',
+  id: 'ben',
+  name: 'Ben',
   language: 'en'
 };
 

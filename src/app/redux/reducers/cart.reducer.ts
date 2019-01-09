@@ -3,24 +3,24 @@ import { AppState, Product } from '../models/shop.model';
 
 const defaultState: Product[] = [
     {
-        id: 'item_1',
-        name: 'Item 1',
-        description: 'Item 1',
-        price: 20,
+        id: 'vanilla',
+        name: 'Vanilla',
+        description: 'Plain and tasty',
+        price: 1.5,
         inCart: 0
     },
     {
-        id: 'item_2',
-        name: 'Item 2',
-        description: 'Item 2',
-        price: 2,
+        id: 'strawberry',
+        name: 'Strawberry',
+        description: 'Refreshing and fruity',
+        price: 2.5,
         inCart: 0
     },
     {
-        id: 'item_3',
-        name: 'Item 3',
-        description: 'Item 3',
-        price: 8,
+        id: 'chocolate',
+        name: 'Chocolate',
+        description: 'The chocolatey one',
+        price: 3,
         inCart: 0
     }
 ];

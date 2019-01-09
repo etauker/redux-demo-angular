@@ -15,10 +15,10 @@ import * as CartActions from '../redux/actions/cart.actions';
 })
 export class CheckoutComponent {
 
-  cart$: Observable<Product[]>;
-  currentlyInCart: any = [];
-  totalCost: number = 0;
-  totalItemCount: number = 0;
+  private cart$: Observable<Product[]>;
+  private currentlyInCart: any = [];
+  private totalCost: number = 0;
+  private totalItemCount: number = 0;
 
   constructor(
     private store: Store<AppState>
