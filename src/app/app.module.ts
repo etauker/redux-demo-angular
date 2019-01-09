@@ -44,7 +44,7 @@ const appRoutes: Routes = [
         appRoutes, { useHash: true }
     ),
     StoreModule.forRoot({
-      user: UserReducer,
+      settings: UserReducer,
       cart: CartReducer
     }),
     StoreDevtoolsModule.instrument({

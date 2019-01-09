@@ -16,12 +16,12 @@ import * as CartActions from '../redux/actions/cart.actions';
 })
 export class ProductsComponent {
 
-  cart$: Observable<Product[]>;
-  user$: Observable<UserSettings>;
-  activeUser: UserSettings;
-  currentlyInCart: any = [];
-  totalCost = 0;
-  totalItemCount = 0;
+  private cart$: Observable<Product[]>;
+  private user$: Observable<UserSettings>;
+  private activeUser: UserSettings;
+  private currentlyInCart: any = [];
+  private totalCost = 0;
+  private totalItemCount = 0;
 
   constructor(
     private router: Router,
@@ -29,7 +29,9 @@ export class ProductsComponent {
   ) {
     this.user$ = this.store.select('settings');
     this.cart$ = this.store.select('cart');
-    this.user$.subscribe(activeUser => this.activeUser = activeUser);
+    this.user$.subscribe(activeUser => {
+      this.activeUser = activeUser
+    });
     this.cart$.subscribe(cartContent => {
 
       this.currentlyInCart = [];
@@ -63,7 +65,7 @@ export class ProductsComponent {
       return this.totalItemCount;
   }
   getUserGreeting = () => {
-      return this.activeUser.name
+      return this.activeUser && this.activeUser.name
         ? `, ${this.activeUser.name}`
         : '';
   }
@@ -78,7 +80,6 @@ export class ProductsComponent {
       this.store.dispatch(new UserActions.ChangeActiveUser(newUser));
     } else {
       this.store.dispatch(new UserActions.ResetUserSettings());
-
     }
   }
   goToCheckout = () => {
